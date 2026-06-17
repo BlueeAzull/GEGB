@@ -14,6 +14,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Row(
+          // Icon e título
           children: [
             IconButton(
               onPressed: () {},
@@ -26,6 +27,45 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.white,
                 fontSize: 22.0,
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            Spacer(),
+
+            // Barra de pesquisa
+            Expanded(
+              flex: 3,
+              child: Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  color: Colors.blue[800],
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar...',
+                    hintStyle: TextStyle(color: Colors.white60),
+                    prefixIcon: Icon(Icons.search, color: Colors.white),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                  ),
+                ),
+              ),
+            ),
+
+            Spacer(),
+
+            // Contate-nos
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                'Contate-nos',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.0,
+                ),
               ),
             ),
           ],

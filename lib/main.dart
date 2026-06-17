@@ -1,32 +1,9 @@
 import 'package:flutter/material.dart';
+import 'widgets/topbar.dart';
+import 'widgets/pages.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-class Content extends StatelessWidget {
-  const Content({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final backgroundColor = Colors.grey[900];
-    final textColor = Colors.grey[300];
-
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24.0,
-              vertical: 24.0,
-            ),
-            child: column,
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -35,11 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Color(0xFF212121),
+        appBar: Topbar(),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text('Vai Parmera'), Text('Welcome to Richard Rios')],
+          child: Content(
+            title: "parmeira diferente",
+            text: "vai parmera contra corinthians",
           ),
         ),
       ),
