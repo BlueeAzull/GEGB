@@ -2,7 +2,8 @@
 - sistema de categorias
 - sistema de pesquisa por titulo
 - pagina de contato
-- mais elementos de markdown!!!
+- mais elementos de markdown
+- adicionar sistema de tema claro e escuro
 
 ```csharp
 using System;
