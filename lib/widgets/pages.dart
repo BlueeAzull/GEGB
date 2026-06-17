@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_highlighter/themes/atom-one-dark-reasonable.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
+import 'package:flutter_highlighter/flutter_highlighter.dart';
+import 'package:flutter_highlighter/themes/dark.dart';
 
 class Content extends StatelessWidget {
   final String title;
@@ -89,7 +92,7 @@ class Content extends StatelessWidget {
                             ),
                             codeblockPadding: const EdgeInsets.all(16.0),
                             codeblockDecoration: BoxDecoration(
-                              color: Colors.black,
+                              color: Color(0xFF282C35),
                               borderRadius: BorderRadius.circular(10.0),
                               border: Border.all(color: Colors.grey[800]!),
                             ),
@@ -115,15 +118,33 @@ class CodeBlockBuilder extends MarkdownElementBuilder {
   Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
     final String text = element.textContent;
 
+    String language = 'csharp';
+
+    if (element.attributes['class'] != null) {
+      language = element.attributes['class']!.replaceAll('language-', '');
+    }
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       margin: const EdgeInsets.symmetric(vertical: 8.0),
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: Color(0xFF282C35),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Text(text, style: preferredStyle),
+      child: ClipRRect(
+        borderRadius: BorderRadiusGeometry.circular(8.0),
+        child: HighlightView(
+          text,
+          language: language,
+          theme: atomOneDarkReasonableTheme,
+          padding: const EdgeInsets.all(16.0),
+          textStyle: const TextStyle(
+            fontFamily: 'monospace',
+            fontSize: 14.0,
+          ),
+        )
+      ),
     );
   }
 }
