@@ -1,0 +1,5 @@
+- fazer menu de páginas e variavel no assetPath
+- sistema de categorias
+- sistema de pesquisa por titulo
+- pagina de contato
+- mais elementos de markdown

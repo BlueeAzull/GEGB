@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
         appBar: Topbar(),
         body: Center(
           child: Content(
-            title: "parmeira diferente",
-            text: "vai parmera contra corinthians",
+            title: "planos (n deletar pfv)",
+            assetPath: "lib/pages/planos.md",
           ),
         ),
       ),
