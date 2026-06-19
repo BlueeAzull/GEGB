@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'DropMenu.dart';
+import 'package:gegb/widgets/DropMenu.dart';
 
 class Topbar extends StatelessWidget implements PreferredSizeWidget {
-  const Topbar({Key? key}) : super(key: key);
+  final Function(String) onPressed;
+  const Topbar({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +19,12 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           // Icon e título
           children: [
-            IconButton(
+            DropMenu(onPressed: onPressed)
+            
+            /*IconButton(
               onPressed: () {},
               icon: Icon(Icons.menu, color: Colors.white),
-            ),
+            )*/,
             SizedBox(width: 8.0),
             Text(
               'GEGB',
