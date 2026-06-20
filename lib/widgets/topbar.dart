@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'DropMenu.dart';
-import 'package:gegb/widgets/DropMenu.dart';
 
 class Topbar extends StatelessWidget implements PreferredSizeWidget {
-  final Function(String) onPressed;
-  const Topbar({super.key, required this.onPressed});
+  const Topbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           // Icon e título
           children: [
-            DropMenu(onPressed: onPressed)
+            DropMenu()
             
             /*IconButton(
               onPressed: () {},

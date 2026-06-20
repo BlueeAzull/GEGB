@@ -9,8 +9,7 @@ class Content extends StatelessWidget {
   final String title;
   final String assetPath;
 
-  const Content({Key? key, required this.title, required this.assetPath})
-    : super(key: key);
+  const Content({super.key, required this.title, required this.assetPath});
 
   @override
   Widget build(BuildContext context) {
@@ -187,8 +186,9 @@ class CodeBlockBuilder extends MarkdownElementBuilder {
 
   // Retorna a cor correta baseado na classe do token do Highlight
   TextStyle? _styleForClass(String? className) {
-    if (className == null)
+    if (className == null) {
       return null; // Permite que o nó filho herde a cor do pai
+    }
 
     const styles = {
       'keyword': TextStyle(color: Color(0xFFC678DD)), // Roxo

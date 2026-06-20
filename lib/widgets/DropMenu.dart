@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 
 class DropMenu extends StatefulWidget{
-  final Function(String) onPressed;
-  /*
-  Dropmenu({super.key, required this.onPressed });
-  */
-  const DropMenu({super.key, required this.onPressed});
+  const DropMenu({super.key});
 
   @override
   State<StatefulWidget> createState() => DropmenuState();
@@ -14,7 +11,7 @@ class DropMenu extends StatefulWidget{
 }
 
 class DropmenuState extends State<DropMenu>{
-  String PaginaSelecionada = "planos.md";
+  String PaginaSelecionada = "planos";
   
   @override
   Widget build(BuildContext context) {
@@ -22,18 +19,15 @@ class DropmenuState extends State<DropMenu>{
       icon: Icon(Icons.menu, color: Colors.white),
 
       onSelected: (NovaPagina){
-        setState(() {
-          PaginaSelecionada = NovaPagina!;
-          widget.onPressed(PaginaSelecionada);
-        });
+        GoRouter.of(context).go("/$NovaPagina");
       },
       itemBuilder: (context) => [
         PopupMenuItem(
-          value: "planos.md",
+          value: "planos",
           child: Text("Planos"),
         ),
         PopupMenuItem(
-          value: "contato.md",
+          value: "contato",
           child: Text("Contato"),
         ),
       ],

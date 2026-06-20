@@ -3,6 +3,8 @@ import 'package:gegb/widgets/pages.dart';
 
 
 class Conteudo extends StatefulWidget{
+  const Conteudo({super.key});
+
   
   @override
   State<StatefulWidget> createState() => ConteudoState();
