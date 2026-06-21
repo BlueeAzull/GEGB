@@ -42,10 +42,67 @@ class Sidebar extends StatelessWidget {
 
               final menuItems = snapshot.data ?? [];
 
+              final paginasPesquisaveis = _mapearPaginasParaPesquisa(menuItems);
+
               return ListView(
                 padding: EdgeInsets.zero,
                 physics: const ClampingScrollPhysics(),
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: SearchAnchor.bar(
+                      barHintText: 'Pesquisar...',
+                      barBackgroundColor: WidgetStateProperty.all(
+                        const Color.fromARGB(255, 29, 29, 29),
+                      ),
+                      barElevation: WidgetStateProperty.all(0),
+                      barShape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      suggestionsBuilder:
+                          (BuildContext context, SearchController controller) {
+                            final input = controller.text.toLowerCase();
+
+                            final filtradas = paginasPesquisaveis.where((pag) {
+                              return pag.title.toLowerCase().contains(input) ||
+                                  pag.caminhoCompleto.toLowerCase().contains(
+                                    input,
+                                  );
+                            }).toList();
+
+                            return filtradas.map((pag) {
+                              return ListTile(
+                                title: Text(
+                                  pag.title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  pag.caminhoCompleto,
+                                  style: TextStyle(
+                                    color: Colors.grey[500],
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                trailing: const Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 14,
+                                  color: Colors.grey,
+                                ),
+                                onTap: () {
+                                  controller.closeView(pag.title);
+                                  context.go('/${pag.pageKey}');
+                                },
+                              );
+                            }).toList();
+                          },
+                    ),
+                  ),
+
+                  // O resto do seu menu original continua aqui embaixo:
                   ...menuItems.map((item) => _buildMenuItem(context, item)),
                 ],
               );
@@ -122,6 +179,33 @@ class Sidebar extends StatelessWidget {
       );
     }
   }
+
+  List<PaginaPesquisavel> _mapearPaginasParaPesquisa(
+    List<SidebarItem> items, {
+    String caminhoPai = "",
+  }) {
+    List<PaginaPesquisavel> resultado = [];
+
+    for (var item in items) {
+      if (item.isCategory) {
+        String novoCaminho = caminhoPai.isEmpty
+            ? item.title
+            : "$caminhoPai > ${item.title}";
+        resultado.addAll(
+          _mapearPaginasParaPesquisa(item.children!, caminhoPai: novoCaminho),
+        );
+      } else if (item.pageKey != null) {
+        resultado.add(
+          PaginaPesquisavel(
+            title: item.title,
+            pageKey: item.pageKey!,
+            caminhoCompleto: caminhoPai.isEmpty ? "Geral" : caminhoPai,
+          ),
+        );
+      }
+    }
+    return resultado;
+  }
 }
 
 class SidebarItem {
@@ -144,4 +228,16 @@ class SidebarItem {
   }
 
   bool get isCategory => children != null && children!.isNotEmpty;
+}
+
+class PaginaPesquisavel {
+  final String title;
+  final String pageKey;
+  final String caminhoCompleto;
+
+  PaginaPesquisavel({
+    required this.title,
+    required this.pageKey,
+    required this.caminhoCompleto,
+  });
 }

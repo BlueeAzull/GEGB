@@ -16,80 +16,62 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.blue,
           borderRadius: BorderRadius.circular(15.0),
         ),
-        child: Row(
-          // Icon e título
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: IconButton(
-                style: ButtonStyle(
-                  mouseCursor: WidgetStateProperty.all(
-                    SystemMouseCursors.click,
-                  ),
-                ),
-                onPressed: () {
-                  sidebarNotifier.value = !sidebarNotifier.value;
-                },
-                icon: Icon(Icons.menu, color: Colors.white),
-              ),
-            ),
-            SizedBox(width: 8.0),
             Text(
               'GEGB',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+                fontSize: 28.0,
+                fontFamily: 'Archivo Black',
               ),
             ),
 
-            Spacer(),
-
-            // Barra de pesquisa
-            Expanded(
-              flex: 3,
-              child: Container(
-                height: 40.0,
-                decoration: BoxDecoration(
-                  color: Colors.blue[800],
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: TextField(
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: 'Pesquisar...',
-                    hintStyle: TextStyle(color: Colors.white60),
-                    prefixIcon: Icon(Icons.search, color: Colors.white),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+            Row(
+              // Menu
+              children: [
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: IconButton(
+                    style: ButtonStyle(
+                      mouseCursor: WidgetStateProperty.all(
+                        SystemMouseCursors.click,
+                      ),
+                    ),
+                    onPressed: () {
+                      sidebarNotifier.value = !sidebarNotifier.value;
+                    },
+                    icon: Icon(Icons.menu, color: Colors.white),
                   ),
                 ),
-              ),
-            ),
+                SizedBox(width: 8.0),
 
-            Spacer(),
+                Spacer(),
 
-            // Contate-nos
-            MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: TextButton(
-                style: ButtonStyle(
-                  mouseCursor: WidgetStateProperty.all(
-                    SystemMouseCursors.click,
+                // Contate-nos
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: TextButton(
+                    style: ButtonStyle(
+                      mouseCursor: WidgetStateProperty.all(
+                        SystemMouseCursors.click,
+                      ),
+                    ),
+                    onPressed: () {
+                      context.go('/contato');
+                    },
+                    child: Text(
+                      'Contate-nos',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14.0,
+                      ),
+                    ),
                   ),
                 ),
-                onPressed: () {
-                  context.go('/contato');
-                },
-                child: Text(
-                  'Contate-nos',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14.0,
-                  ),
-                ),
-              ),
+              ],
             ),
           ],
         ),

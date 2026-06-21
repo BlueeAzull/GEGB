@@ -1,9 +1,10 @@
 - fazer menu de páginas e sidebar x
 - sistema de categorias x
-- sistema de pesquisa por titulo
+- sistema de pesquisa por titulo x
 - mais elementos de markdown: eve
-- adicionar sistema de tema claro e escuro
-- ajustar a pagina de contato
+- adicionar sistema de tema claro e escuro (pro tema escuro, mantenham as cores atuais)
+- ajustar a pagina de contato (vamos tentar manter o .md, mas se julgarem necessario um widget proprio, fiquem a vontade)
+- mudar icone e titulo do app e pagina
 
 ```csharp
 using System;

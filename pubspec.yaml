@@ -61,6 +61,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: Archivo Black
+      fonts:
+        - asset: assets/fonts/ArchivoBlack-Regular.ttf
+
   assets:
     - assets/sidebar_list.json
     - assets/pages/planos.md
