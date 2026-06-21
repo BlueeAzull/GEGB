@@ -5,7 +5,7 @@ import 'widgets/pages.dart';
 import 'widgets/sidebar.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-// final ValueNotifier<bool> sidebarNotifier = ValueNotifier<bool>(true);
+final ValueNotifier<bool> sidebarNotifier = ValueNotifier<bool>(true);
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,26 +49,90 @@ Map<String, Content> paginas = {
   ),
 };
 
-Widget _construirPagina(BuildContext context, GoRouterState state) {
+Widget _construirConteudoPagina(BuildContext context, GoRouterState state) {
   final nome = state.uri.path.replaceFirst('/', '');
   final content = paginas[nome];
 
-  return Scaffold(
-    appBar: Topbar(),
-    backgroundColor: const Color(0xFF212121),
-    body: Row(
-      children: [
-        const Sidebar(),
-        Expanded(
-          child:
-              content ??
-              Center(
-                child: Text(
-                  "Erro: A chave '$nome' não foi encontrada no mapa de páginas.",
-                ),
-              ),
+  return content ??
+      Center(
+        child: Text(
+          "Erro: A chave '$nome' não foi encontrada no mapa de páginas.",
+          style: const TextStyle(color: Colors.orangeAccent, fontSize: 16),
         ),
-      ],
+      );
+
+  // return Scaffold(
+  //   backgroundColor: const Color(0xFF212121),
+  //   body: ValueListenableBuilder<bool>(
+  //     valueListenable: sidebarNotifier,
+  //     builder: (context, isSidebarVisible, child) {
+  //       return Row(
+  //         children: [
+  //           AnimatedSize(
+  //             duration: const Duration(milliseconds: 250),
+  //             curve: Curves.easeInOut,
+  //             child: isSidebarVisible
+  //                 ? const SizedBox(width: 280, child: Sidebar())
+  //                 : const SizedBox.shrink(),
+  //           ),
+
+  //           Expanded(
+  //             child: Column(
+  //               children: [
+  //                 const Topbar(),
+  //                 Expanded(
+  //                   child:
+  //                       content ??
+  //                       Center(
+  //                         child: Text(
+  //                           "Erro: A chave '$nome' não foi encontrada no mapa de páginas.",
+  //                           style: const TextStyle(
+  //                             color: Colors.orangeAccent,
+  //                             fontSize: 16,
+  //                           ),
+  //                         ),
+  //                       ),
+  //                 ),
+  //               ],
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   ),
+  // );
+}
+
+Widget _construirLayoutDoApp(
+  BuildContext context,
+  GoRouterState state,
+  Widget child,
+) {
+  return Scaffold(
+    backgroundColor: const Color(0xFF212121),
+    body: ValueListenableBuilder<bool>(
+      valueListenable: sidebarNotifier,
+      builder: (context, isSidebarVisible, _) {
+        return Row(
+          children: [
+            AnimatedSize(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeInOut,
+              child: isSidebarVisible
+                  ? const SizedBox(width: 280, child: Sidebar())
+                  : const SizedBox.shrink(),
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  const Topbar(),
+                  Expanded(child: child),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
     ),
   );
 }
@@ -76,12 +140,19 @@ Widget _construirPagina(BuildContext context, GoRouterState state) {
 final GoRouter router = GoRouter(
   initialLocation: "/planos",
   routes: [
-    // url de profundidade 1 (ex planos)
-    GoRoute(path: "/:p1", builder: _construirPagina),
-    // url de profundidade 2 (ex teste1)
-    GoRoute(path: "/:p1/:p2", builder: _construirPagina),
-    // url de profundidade 3 (ex teste2 e 3)
-    GoRoute(path: "/:p1/:p2/:p3", builder: _construirPagina),
+    ShellRoute(
+      builder: (context, state, child) {
+        return _construirLayoutDoApp(context, state, child);
+      },
+      routes: [
+        // url de profundidade 1 (ex planos)
+        GoRoute(path: "/:p1", builder: _construirConteudoPagina),
+        // url de profundidade 2 (ex teste1)
+        GoRoute(path: "/:p1/:p2", builder: _construirConteudoPagina),
+        // url de profundidade 3 (ex teste2 e 3)
+        GoRoute(path: "/:p1/:p2/:p3", builder: _construirConteudoPagina),
+      ],
+    ),
   ],
 );
 

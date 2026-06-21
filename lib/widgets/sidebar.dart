@@ -3,11 +3,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:go_router/go_router.dart';
 
-class Sidebar extends StatelessWidget /* implements PreferredSizeWidget */ {
-  /* final Function(String title, String pageKey) onPageSelected;
-
-  const Sidebar({Key? key, required this.onPageSelected}) : super(key: key); */
-
+class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
 
   Future<List<SidebarItem>> _loadSidebarMenu() async {
@@ -21,64 +17,108 @@ class Sidebar extends StatelessWidget /* implements PreferredSizeWidget */ {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280,
-      color: const Color(0xFF1A1A1A),
-      child: FutureBuilder<List<SidebarItem>>(
-        future: _loadSidebarMenu(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.blue),
-            );
-          }
-          if (snapshot.hasError) {
-            return const Center(child: Text('Erro ao carregar menu.'));
-          }
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(vertical: 20.0),
+      decoration: BoxDecoration(
+        color: Color(0xFF1A1A1A),
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(),
+        child: SizedBox(
+          width: 256,
+          child: FutureBuilder<List<SidebarItem>>(
+            future: _loadSidebarMenu(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(color: Colors.blue),
+                );
+              }
+              if (snapshot.hasError) {
+                return const Center(child: Text('Erro ao carregar menu.'));
+              }
 
-          final menuItems = snapshot.data ?? [];
+              final menuItems = snapshot.data ?? [];
 
-          return ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              // const DrawerHeader(
-              //   decoration: BoxDecoration(color: Colors.black26),
-              //   child: Text('AAAAAAAAAAAAA'),
-              // ),
-              ...menuItems.map((item) => _buildMenuItem(context, item)),
-            ],
-          );
-        },
+              return ListView(
+                padding: EdgeInsets.zero,
+                physics: const ClampingScrollPhysics(),
+                children: [
+                  ...menuItems.map((item) => _buildMenuItem(context, item)),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }
 
   Widget _buildMenuItem(BuildContext context, SidebarItem item) {
     if (item.isCategory) {
-      return ExpansionTile(
-        iconColor: Colors.white,
-        collapsedIconColor: Colors.grey,
-        title: Text(
-          item.title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        child: Material(
+          color: const Color.fromARGB(255, 24, 24, 24),
+          borderRadius: BorderRadius.circular(10),
+          clipBehavior: Clip.antiAlias,
+          child: ExpansionTile(
+            iconColor: Colors.white,
+            collapsedIconColor: Colors.grey,
+            shape: const Border(),
+            collapsedShape: const Border(),
+            title: Text(
+              item.title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            children: item.children!
+                .map((child) => _buildMenuItem(context, child))
+                .toList(),
           ),
         ),
-        children: item.children!
-            .map((child) => _buildMenuItem(context, child))
-            .toList(),
       );
     } else {
-      return ListTile(
-        title: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(item.title, style: TextStyle(color: Colors.grey[300])),
+      final String currentPath = GoRouterState.of(
+        context,
+      ).uri.path.replaceFirst('/', '');
+      final bool isSelected = currentPath == item.pageKey;
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        child: Material(
+          borderRadius: BorderRadius.circular(8.0),
+          color: isSelected
+              ? const Color.fromARGB(255, 46, 46, 46)
+              : const Color.fromARGB(255, 29, 29, 29),
+          child: ListTile(
+            tileColor: Colors.transparent,
+            selectedTileColor: Colors.transparent,
+            selected: isSelected,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                item.title,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.grey[300],
+                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                ),
+              ),
+            ),
+            onTap: () {
+              if (item.pageKey != null) {
+                context.go('/${item.pageKey}');
+              }
+            },
+          ),
         ),
-        onTap: () {
-          if (item.pageKey != null) {
-            context.go('/${item.pageKey}');
-          }
-        },
       );
     }
   }

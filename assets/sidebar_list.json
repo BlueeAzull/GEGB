@@ -4,10 +4,6 @@
     "pageKey": "planos"
   },
   {
-    "title": "Contato (ta aq pra testes, provavelmente vai deixar de ser )",
-    "pageKey": "contato"
-  },
-  {
     "title": "categoria1",
     "children": [
       {

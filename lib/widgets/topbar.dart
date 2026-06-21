@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dropmenu.dart';
+import '../main.dart';
+import 'package:go_router/go_router.dart';
 
+// TO-DO: estilizar
 class Topbar extends StatelessWidget implements PreferredSizeWidget {
   const Topbar({super.key});
 
@@ -17,12 +19,20 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           // Icon e título
           children: [
-            DropMenu(),
-
-            /*IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.menu, color: Colors.white),
-            )*/
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: IconButton(
+                style: ButtonStyle(
+                  mouseCursor: WidgetStateProperty.all(
+                    SystemMouseCursors.click,
+                  ),
+                ),
+                onPressed: () {
+                  sidebarNotifier.value = !sidebarNotifier.value;
+                },
+                icon: Icon(Icons.menu, color: Colors.white),
+              ),
+            ),
             SizedBox(width: 8.0),
             Text(
               'GEGB',
@@ -60,14 +70,24 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
             Spacer(),
 
             // Contate-nos
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                'Contate-nos',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.0,
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: TextButton(
+                style: ButtonStyle(
+                  mouseCursor: WidgetStateProperty.all(
+                    SystemMouseCursors.click,
+                  ),
+                ),
+                onPressed: () {
+                  context.go('/contato');
+                },
+                child: Text(
+                  'Contate-nos',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14.0,
+                  ),
                 ),
               ),
             ),

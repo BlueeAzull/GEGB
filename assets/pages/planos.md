@@ -1,4 +1,4 @@
-- fazer menu de páginas e variavel no assetPath: caio
+- fazer menu de páginas e sidebar x
 - sistema de categorias x
 - sistema de pesquisa por titulo
 - mais elementos de markdown: eve
