@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Planos",
+    "pageKey": "planos"
+  },
+  {
+    "title": "Contato (ta aq pra testes, provavelmente vai deixar de ser )",
+    "pageKey": "contato"
+  },
+  {
+    "title": "categoria1",
+    "children": [
+      {
+        "title": "teste1",
+        "pageKey": "categoria1/teste1"
+      }
+    ]
+  },
+  {
+    "title": "categoria2",
+    "children": [
+      {
+        "title": "subcategoria1",
+        "children": [
+          {
+            "title": "teste2",
+            "pageKey": "categoria2/subcategoria1/teste2"
+          }
+        ]
+      },
+      {
+        "title": "subcategoria2",
+        "children": [
+          {
+            "title": "teste3",
+            "pageKey": "categoria2/subcategoria2/teste3"
+          }
+        ]
+      }
+    ]
+  }
+]

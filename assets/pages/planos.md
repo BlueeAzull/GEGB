@@ -1,5 +1,5 @@
 - fazer menu de páginas e variavel no assetPath: caio
-- sistema de categorias
+- sistema de categorias x
 - sistema de pesquisa por titulo
 - mais elementos de markdown: eve
 - adicionar sistema de tema claro e escuro

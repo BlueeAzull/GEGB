@@ -2,65 +2,97 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'widgets/topbar.dart';
 import 'widgets/pages.dart';
+import 'widgets/sidebar.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+
+// final ValueNotifier<bool> sidebarNotifier = ValueNotifier<bool>(true);
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  usePathUrlStrategy();
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget{
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
   State<StatefulWidget> createState() => MyAppState();
 }
-Map<String, Content> paginas = {
-    "planos" : Content(
-      title: "planos (n deletar pfv)",
-      assetPath: "lib/pages/planos.md",
-    ),
-    "contato": Content(
-      title: "Contato uiui",
-      assetPath: "lib/pages/contato.md",
-    ),
-  };
 
+Map<String, Content> paginas = {
+  // pages pré-sidebar
+  "planos": Content(
+    title: "planos (n deletar pfv)",
+    assetPath: "assets/pages/planos.md",
+  ),
+  "contato": Content(
+    title: "Contato uiui",
+    assetPath: "assets/pages/contato.md",
+  ),
+
+  // testes
+  // categoria 1
+  "categoria1/teste1": Content(
+    title: "teste1",
+    assetPath: "assets/pages/categoria1/teste1.md",
+  ),
+
+  // categoria2 (sub1 e sub2 respectivamente)
+  "categoria2/subcategoria1/teste2": Content(
+    title: "teste2",
+    assetPath: "assets/pages/categoria2/subcategoria1/teste2.md",
+  ),
+  "categoria2/subcategoria2/teste3": Content(
+    title: "teste3",
+    assetPath: "assets/pages/categoria2/subcategoria2/teste3.md",
+  ),
+};
+
+Widget _construirPagina(BuildContext context, GoRouterState state) {
+  final nome = state.uri.path.replaceFirst('/', '');
+  final content = paginas[nome];
+
+  return Scaffold(
+    appBar: Topbar(),
+    backgroundColor: const Color(0xFF212121),
+    body: Row(
+      children: [
+        const Sidebar(),
+        Expanded(
+          child:
+              content ??
+              Center(
+                child: Text(
+                  "Erro: A chave '$nome' não foi encontrada no mapa de páginas.",
+                ),
+              ),
+        ),
+      ],
+    ),
+  );
+}
 
 final GoRouter router = GoRouter(
   initialLocation: "/planos",
   routes: [
-    GoRoute(
-      path: "/:pagina",
-      builder: (context, state) {
-        final nome = state.pathParameters["pagina"]!;
-        final content = paginas[nome];
-
-        return Scaffold(
-          appBar: Topbar(),
-          backgroundColor: const Color(0xFF212121),
-          body: content ??
-              const Center(child: Text("Página não existe")),
-        );
-      },
-    ),
+    // url de profundidade 1 (ex planos)
+    GoRoute(path: "/:p1", builder: _construirPagina),
+    // url de profundidade 2 (ex teste1)
+    GoRoute(path: "/:p1/:p2", builder: _construirPagina),
+    // url de profundidade 3 (ex teste2 e 3)
+    GoRoute(path: "/:p1/:p2/:p3", builder: _construirPagina),
   ],
 );
 
 class MyAppState extends State<MyApp> {
-
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
-        theme: ThemeData(
-          useMaterial3: true
-        ),
-      )
-      );
-    
+      routerConfig: router,
+      theme: ThemeData(useMaterial3: true, brightness: Brightness.dark),
+    );
   }
 }
 
