@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:go_router/go_router.dart';
+import '../main.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({Key? key}) : super(key: key);
@@ -16,11 +17,13 @@ class Sidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sidebarCores = Theme.of(context).extension<Temas>()!;
+
     return Container(
       margin: EdgeInsets.all(10.0),
       padding: EdgeInsets.symmetric(vertical: 20.0),
       decoration: BoxDecoration(
-        color: Color(0xFF1A1A1A),
+        color: sidebarCores.fundoSidebar,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: SingleChildScrollView(
@@ -53,7 +56,7 @@ class Sidebar extends StatelessWidget {
                     child: SearchAnchor.bar(
                       barHintText: 'Pesquisar...',
                       barBackgroundColor: WidgetStateProperty.all(
-                        const Color.fromARGB(255, 29, 29, 29),
+                        sidebarCores.categoriaSidebar,
                       ),
                       barElevation: WidgetStateProperty.all(0),
                       barShape: WidgetStateProperty.all(
@@ -87,10 +90,10 @@ class Sidebar extends StatelessWidget {
                                     fontSize: 12,
                                   ),
                                 ),
-                                trailing: const Icon(
+                                trailing: Icon(
                                   Icons.arrow_forward_ios,
                                   size: 14,
-                                  color: Colors.grey,
+                                  color: sidebarCores.texto,
                                 ),
                                 onTap: () {
                                   controller.closeView(pag.title);
@@ -114,22 +117,24 @@ class Sidebar extends StatelessWidget {
   }
 
   Widget _buildMenuItem(BuildContext context, SidebarItem item) {
+    final sidebarCores = Theme.of(context).extension<Temas>()!;
+
     if (item.isCategory) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
         child: Material(
-          color: const Color.fromARGB(255, 24, 24, 24),
+          color: sidebarCores.categoriaSidebar,
           borderRadius: BorderRadius.circular(10),
           clipBehavior: Clip.antiAlias,
           child: ExpansionTile(
-            iconColor: Colors.white,
-            collapsedIconColor: Colors.grey,
+            iconColor: sidebarCores.texto,
+            collapsedIconColor: sidebarCores.textoUnselected,
             shape: const Border(),
             collapsedShape: const Border(),
             title: Text(
               item.title,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: sidebarCores.texto,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -150,8 +155,8 @@ class Sidebar extends StatelessWidget {
         child: Material(
           borderRadius: BorderRadius.circular(8.0),
           color: isSelected
-              ? const Color.fromARGB(255, 46, 46, 46)
-              : const Color.fromARGB(255, 29, 29, 29),
+              ? sidebarCores.itemSelecionadoSidebar
+              : sidebarCores.itemPadraoSidebar,
           child: ListTile(
             tileColor: Colors.transparent,
             selectedTileColor: Colors.transparent,
@@ -164,7 +169,9 @@ class Sidebar extends StatelessWidget {
               child: Text(
                 item.title,
                 style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.grey[300],
+                  color: isSelected
+                      ? sidebarCores.texto
+                      : sidebarCores.textoUnselected,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
               ),

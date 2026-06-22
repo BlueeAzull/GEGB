@@ -1,5 +1,5 @@
 name: gegb
-description: "A new Flutter project."
+description: "O guia de estudos do grupo B"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -43,7 +43,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: ^0.14.4
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -68,6 +68,7 @@ flutter:
 
   assets:
     - assets/sidebar_list.json
+    - assets/pages/markdowntest.md
     - assets/pages/planos.md
     - assets/pages/contato.md
     - assets/pages/categoria1/teste1.md
@@ -104,3 +105,17 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  # Base image path (Make sure this square image exists in your assets folder)
+  image_path: "assets/icon.png"
+
+  # Windows setup
+  windows:
+    generate: true
+    image_path: "assets/icon.png" # Must be square, min 256x256 recommended
+
+  # Web setup
+  web:
+    generate: true
+    image_path: "assets/icon.png"

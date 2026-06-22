@@ -29,8 +29,28 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
             ),
 
             Row(
-              // Menu
+              // Menu e tema
               children: [
+                ValueListenableBuilder<bool>(
+                  valueListenable: isDarkThemeNotifier,
+                  builder: (context, isDark, _) {
+                    return IconButton(
+                      style: ButtonStyle(
+                        mouseCursor: WidgetStateProperty.all(
+                          SystemMouseCursors.click,
+                        ),
+                      ),
+                      icon: Icon(
+                        isDark ? Icons.wb_sunny : Icons.nightlight_round,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        isDarkThemeNotifier.value = !isDarkThemeNotifier.value;
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(width: 8.0),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: IconButton(

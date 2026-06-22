@@ -4,6 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:highlight/highlight.dart' show highlight, Node, Mode;
 import 'package:highlight/languages/cs.dart';
+import '../main.dart';
 
 class Content extends StatelessWidget {
   final String title;
@@ -13,11 +14,11 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = Colors.grey[900];
-    final textColor = Colors.grey[300];
+    final tema = Theme.of(context).extension<Temas>()!;
+    final textColor = tema.texto;
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      // backgroundColor: backgroundColor,
       body: SafeArea(
         child: FutureBuilder<String>(
           future: rootBundle.loadString(assetPath),
@@ -29,10 +30,10 @@ class Content extends StatelessWidget {
             }
 
             if (snapshot.hasError) {
-              return const Center(
+              return Center(
                 child: Text(
                   'Erro ao carregar o arquivo.',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: tema.texto),
                 ),
               );
             }
@@ -52,7 +53,7 @@ class Content extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: tema.texto,
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 0.5,
@@ -65,31 +66,85 @@ class Content extends StatelessWidget {
                         child: MarkdownBody(
                           data: textMarkdown,
                           builders: {'code': CodeBlockBuilder()},
+                          imageBuilder: (uri, title, alt) {
+                            final uriString = uri.toString();
+
+                            final matchWidth = RegExp(
+                              r'width=(\d+)',
+                            ).firstMatch(uriString);
+                            final double? customWidth = matchWidth != null
+                                ? double.parse(matchWidth.group(1)!)
+                                : null;
+
+                            final matchHeight = RegExp(
+                              r'height=(\d+)',
+                            ).firstMatch(uriString);
+                            final double? customHeight = matchHeight != null
+                                ? double.parse(matchHeight.group(1)!)
+                                : null;
+
+                            final cleanPath = uriString.split('?').first;
+
+                            final bool isNetworkImage =
+                                cleanPath.startsWith('http://') ||
+                                cleanPath.startsWith('https://');
+
+                            return Center(
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: 12.0,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: isNetworkImage
+                                      ? Image.network(
+                                          cleanPath,
+                                          width: customWidth,
+                                          height: customHeight,
+                                          fit: BoxFit.contain,
+
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  const Icon(
+                                                    Icons.broken_image,
+                                                    color: Colors.red,
+                                                  ),
+                                        )
+                                      : Image.asset(
+                                          cleanPath,
+                                          width: customWidth,
+                                          height: customHeight,
+                                          fit: BoxFit.contain,
+                                        ),
+                                ),
+                              ),
+                            );
+                          },
                           styleSheet: MarkdownStyleSheet(
                             p: TextStyle(
                               color: textColor,
                               fontSize: 14,
                               height: 1.5,
                             ),
-                            h1: const TextStyle(
+                            h1: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: tema.texto,
                             ),
-                            h2: const TextStyle(
+                            h2: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: tema.texto,
                             ),
-                            h3: const TextStyle(
+                            h3: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: tema.texto,
                             ),
                             listBullet: TextStyle(color: textColor),
                             blockquote: TextStyle(color: textColor),
                             blockquoteDecoration: BoxDecoration(
-                              color: Colors.grey[800],
+                              color: tema.fundoSidebar,
                             ),
                             code: TextStyle(
                               fontSize: 14,

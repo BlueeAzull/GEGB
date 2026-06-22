@@ -4,6 +4,10 @@
     "pageKey": "planos"
   },
   {
+    "title": "MarkdownTest",
+    "pageKey": "markdowntest"
+  },
+  {
     "title": "categoria1",
     "children": [
       {

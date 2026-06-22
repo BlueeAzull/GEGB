@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gegb/widgets/pages.dart';
 
-
-class Conteudo extends StatefulWidget{
+class Conteudo extends StatefulWidget {
   const Conteudo({super.key});
 
-  
   @override
   State<StatefulWidget> createState() => ConteudoState();
 }
-class ConteudoState extends State<Conteudo>{
 
+class ConteudoState extends State<Conteudo> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Content(
       title: "planos (n deletar pfv)",
-      assetPath: "lib/pages/planos.md"
-      );
+      assetPath: "lib/pages/planos.md",
+    );
   }
 }
