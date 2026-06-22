@@ -5,8 +5,9 @@
 - adicionar sistema de tema claro e escuro x
 - ajustar a pagina de contato x
 - mudar icone e titulo do app e pagina x
+- consertar sidebar no mobile (coisa basica q eu esqueci): eve
 
-# Tudo finalizado yaaayyy!!!!
+# Tudo (nao) finalizado yaaayyy!!!!
 
 chequem o README.md para um tutorial de como adicionar mais páginas, markdowntest para exemplos de elementos .md para facilitar a montagem dos artigos
 
