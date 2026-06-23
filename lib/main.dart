@@ -5,7 +5,7 @@ import 'widgets/pages.dart';
 import 'widgets/sidebar.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-final ValueNotifier<bool> sidebarNotifier = ValueNotifier<bool>(true);
+final ValueNotifier<bool> sidebarNotifier = ValueNotifier<bool>(false);
 final ValueNotifier<bool> isDarkThemeNotifier = ValueNotifier<bool>(true);
 
 void main() {
@@ -71,17 +71,53 @@ Widget _construirLayoutDoApp(
   GoRouterState state,
   Widget child,
 ) {
+  final double larguraTela = MediaQuery.of(context).size.width;
+  final bool isMobile = larguraTela < 700;
   return Scaffold(
     body: ValueListenableBuilder<bool>(
       valueListenable: sidebarNotifier,
       builder: (context, isSidebarVisible, _) {
+        // mobile
+        if (isMobile) {
+          return Stack(
+            children: [
+              Column(
+                children: [
+                  const Topbar(),
+                  Expanded(child: child),
+                ],
+              ),
+
+              if (isSidebarVisible) ...[
+                GestureDetector(
+                  onTap: () => sidebarNotifier.value =
+                      false, // Clicar fora fecha a sidebar
+                  child: Container(color: Colors.black54),
+                ),
+
+                SafeArea(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: larguraTela * 0.52, // largura
+                        child: const Sidebar(isMobile: true),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ],
+          );
+        }
+
+        // desktop
         return Row(
           children: [
             AnimatedSize(
               duration: const Duration(milliseconds: 250),
               curve: Curves.easeInOut,
               child: isSidebarVisible
-                  ? const SizedBox(width: 280, child: Sidebar())
+                  ? const SizedBox(width: 280, child: Sidebar(isMobile: false))
                   : const SizedBox.shrink(),
             ),
             Expanded(

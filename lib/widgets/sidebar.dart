@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../main.dart';
 
 class Sidebar extends StatelessWidget {
-  const Sidebar({Key? key}) : super(key: key);
+  final bool isMobile;
+
+  const Sidebar({super.key, this.isMobile = false});
 
   Future<List<SidebarItem>> _loadSidebarMenu() async {
     final String response = await rootBundle.loadString(
@@ -20,11 +22,16 @@ class Sidebar extends StatelessWidget {
     final sidebarCores = Theme.of(context).extension<Temas>()!;
 
     return Container(
-      margin: EdgeInsets.all(10.0),
-      padding: EdgeInsets.symmetric(vertical: 20.0),
+      margin: isMobile ? EdgeInsets.zero : const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       decoration: BoxDecoration(
         color: sidebarCores.fundoSidebar,
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: isMobile
+            ? const BorderRadius.only(
+                topRight: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0),
+              )
+            : BorderRadius.circular(15.0),
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -97,6 +104,8 @@ class Sidebar extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   controller.closeView(pag.title);
+
+                                  if (isMobile) sidebarNotifier.value = false;
                                   context.go('/${pag.pageKey}');
                                 },
                               );
@@ -105,7 +114,6 @@ class Sidebar extends StatelessWidget {
                     ),
                   ),
 
-                  // O resto do seu menu original continua aqui embaixo:
                   ...menuItems.map((item) => _buildMenuItem(context, item)),
                 ],
               );
@@ -178,6 +186,7 @@ class Sidebar extends StatelessWidget {
             ),
             onTap: () {
               if (item.pageKey != null) {
+                if (isMobile) sidebarNotifier.value = false;
                 context.go('/${item.pageKey}');
               }
             },
