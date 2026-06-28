@@ -22,34 +22,193 @@ class MyApp extends StatefulWidget {
 }
 
 Map<String, Content> paginas = {
-  // pages pré-sidebar
-  "planos": Content(
-    title: "planos (n deletar pfv)",
-    assetPath: "assets/pages/planos.md",
-  ),
+  "inicio": Content(title: "Início", assetPath: "assets/pages/inicio.md"),
   "contato": Content(title: "Contato", assetPath: "assets/pages/contato.md"),
 
-  // testes
-  // sem categoria
-  "markdowntest": Content(
-    title: "markdowntest",
-    assetPath: "assets/pages/markdowntest.md",
+
+  // --- CATEGORIA 1: FUNDAMENTOS ---
+  // Introdução
+  "fundamentos/introducao/instalacao-visual-studio": Content(
+    title: "Instalação do VS",
+    assetPath: "assets/pages/fundamentos/introducao/instalacao-visual-studio.md",
+  ),
+  "fundamentos/introducao/anatomia-do-projeto": Content(
+    title: "Anatomia do Projeto",
+    assetPath: "assets/pages/fundamentos/introducao/anatomia-do-projeto.md",
+  ),
+  // Programação C#
+  "fundamentos/programacao/variaveis-e-tipos": Content(
+    title: "Variáveis e Tipos",
+    assetPath: "assets/pages/fundamentos/programacao/variaveis-e-tipos.md",
+  ),
+  "fundamentos/programacao/estruturas-de-controle": Content(
+    title: "Controle de Fluxo",
+    assetPath: "assets/pages/fundamentos/programacao/estruturas-de-controle.md",
+  ),
+  "fundamentos/programacao/metodos-e-funcoes": Content(
+    title: "Métodos e Funções",
+    assetPath: "assets/pages/fundamentos/programacao/metodos-e-funcoes.md",
+  ),
+  // Orientação a Objetos
+  "fundamentos/poo/classes-e-objetos": Content(
+    title: "Classes e Objetos",
+    assetPath: "assets/pages/fundamentos/poo/classes-e-objetos.md",
+  ),
+  "fundamentos/poo/heranca-e-polimorfismo": Content(
+    title: "Herança e Polimorfismo",
+    assetPath: "assets/pages/fundamentos/poo/heranca-e-polimorfismo.md",
+  ),
+  "fundamentos/boas-praticas": Content(
+    title: "Boas Práticas (Fundamentos)",
+    assetPath: "assets/pages/fundamentos/boas-praticas.md",
   ),
 
-  // categoria 1
-  "categoria1/teste1": Content(
-    title: "teste1",
-    assetPath: "assets/pages/categoria1/teste1.md",
+  // --- CATEGORIA 2: CONTROLES ---
+  // Controles Básicos
+  "controles/basicos/labels-e-buttons": Content(
+    title: "Labels e Buttons",
+    assetPath: "assets/pages/controles/basicos/labels-e-buttons.md",
+  ),
+  "controles/basicos/seletores-e-opcoes": Content(
+    title: "Seletores e Opções",
+    assetPath: "assets/pages/controles/basicos/seletores-e-opcoes.md",
+  ),
+  // Controles Avançados
+  "controles/avancados/datagridview-essencial": Content(
+    title: "DataGridView Essencial",
+    assetPath: "assets/pages/controles/avancados/datagridview-essencial.md",
+  ),
+  "controles/avancados/listview-e-treeview": Content(
+    title: "ListView e TreeView",
+    assetPath: "assets/pages/controles/avancados/listview-e-treeview.md",
+  ),
+  // Controles de Layout
+  "controles/layout/panels-e-groups": Content(
+    title: "Panels e Groups",
+    assetPath: "assets/pages/controles/layout/panels-e-groups.md",
+  ),
+  "controles/layout/responsividade": Content(
+    title: "Responsividade",
+    assetPath: "assets/pages/controles/layout/responsividade.md",
+  ),
+  // Caixas de Diálogo e Telas
+  "controles/dialogos/dialogos-padrao": Content(
+    title: "Diálogos Padrão",
+    assetPath: "assets/pages/controles/dialogos/dialogos-padrao.md",
+  ),
+  "controles/dialogos/comunicacao-entre-forms": Content(
+    title: "Comunicação entre Forms",
+    assetPath: "assets/pages/controles/dialogos/comunicacao-entre-forms.md",
+  ),
+  "controles/boas-praticas": Content(
+    title: "Boas Práticas (Controles)",
+    assetPath: "assets/pages/controles/boas-praticas.md",
   ),
 
-  // categoria2 (sub1 e sub2 respectivamente)
-  "categoria2/subcategoria1/teste2": Content(
-    title: "teste2",
-    assetPath: "assets/pages/categoria2/subcategoria1/teste2.md",
+  // --- CATEGORIA 3: BANCO DE DADOS & CRUD ---
+  // Configuração e Conexão
+  "banco-de-dados/configuracao/instalacao-mysql": Content(
+    title: "Instalação do MySQL",
+    assetPath: "assets/pages/banco-de-dados/configuracao/instalacao-mysql.md",
   ),
-  "categoria2/subcategoria2/teste3": Content(
-    title: "teste3",
-    assetPath: "assets/pages/categoria2/subcategoria2/teste3.md",
+  "banco-de-dados/conexao/classe-conexao": Content(
+    title: "Classe de Conexão",
+    assetPath: "assets/pages/banco-de-dados/conexao/classe-conexao.md",
+  ),
+  // Operações SQL
+  "banco-de-dados/operacoes/inserir-e-consultar": Content(
+    title: "Inserir e Consultar",
+    assetPath: "assets/pages/banco-de-dados/operacoes/inserir-e-consultar.md",
+  ),
+  "banco-de-dados/operacoes/atualizar-e-excluir": Content(
+    title: "Atualizar e Excluir",
+    assetPath: "assets/pages/banco-de-dados/operacoes/atualizar-e-excluir.md",
+  ),
+  // Arquitetura
+  "banco-de-dados/arquitetura/padrao-repository": Content(
+    title: "Padrão Repository",
+    assetPath: "assets/pages/banco-de-dados/arquitetura/padrao-repository.md",
+  ),
+  "banco-de-dados/arquitetura/camada-de-servicos": Content(
+    title: "Camada de Serviços",
+    assetPath: "assets/pages/banco-de-dados/arquitetura/camada-de-servicos.md",
+  ),
+  // Avançado de BD
+  "banco-de-dados/avancado/transacoes": Content(
+    title: "Transações SQL",
+    assetPath: "assets/pages/banco-de-dados/avancado/transacoes.md",
+  ),
+  "banco-de-dados/projeto-pratico": Content(
+    title: "Projeto Prático (CRUD)",
+    assetPath: "assets/pages/banco-de-dados/projeto-pratico.md",
+  ),
+  "banco-de-dados/boas-praticas": Content(
+    title: "Boas Práticas (Banco de Dados)",
+    assetPath: "assets/pages/banco-de-dados/boas-praticas.md",
+  ),
+
+  // --- CATEGORIA 4: DICAS & CLEAN CODE ---
+  "dicas/separacao-de-responsabilidades": Content(
+    title: "Separação de Responsabilidades",
+    assetPath: "assets/pages/dicas/separacao-de-responsabilidades.md",
+  ),
+  "dicas/codigo-confuso-vs-codigo-limpo": Content(
+    title: "Código Confuso VS Limpo",
+    assetPath: "assets/pages/dicas/codigo-confuso-vs-codigo-limpo.md",
+  ),
+  "dicas/clean-code/dry-e-yagni": Content(
+    title: "DRY e YAGNI",
+    assetPath: "assets/pages/dicas/clean-code/dry-e-yagni.md",
+  ),
+  "dicas/clean-code/retornos-precoces": Content(
+    title: "Retornos Precoces",
+    assetPath: "assets/pages/dicas/clean-code/retornos-precoces.md",
+  ),
+  "dicas/erros/try-catch-global": Content(
+    title: "Try-Catch Global",
+    assetPath: "assets/pages/dicas/erros/try-catch-global.md",
+  ),
+  "dicas/produtividade/atalhos-do-visual-studio": Content(
+    title: "Atalhos do VS",
+    assetPath: "assets/pages/dicas/produtividade/atalhos-do-visual-studio.md",
+  ),
+  "dicas/boas-praticas": Content(
+    title: "Boas Práticas (Dicas)",
+    assetPath: "assets/pages/dicas/boas-praticas.md",
+  ),
+
+  // --- CATEGORIA 5: PROGRAMAÇÃO AVANÇADA ---
+  // Assincronismo
+  "avancado/assincronismo/async-await": Content(
+    title: "Async e Await",
+    assetPath: "assets/pages/avancado/assincronismo/async-await.md",
+  ),
+  "avancado/assincronismo/background-worker-e-threads": Content(
+    title: "Threads e BackgroundWorker",
+    assetPath: "assets/pages/avancado/assincronismo/background-worker-e-threads.md",
+  ),
+  // Customização e Desenho
+  "avancado/customizacao/desenho-customizado": Content(
+    title: "Desenho Customizado (GDI+)",
+    assetPath: "assets/pages/avancado/customizacao/desenho-customizado.md",
+  ),
+  // Integrações
+  "avancado/integracoes/geracao-de-relatorios-pdf": Content(
+    title: "Geração de PDF",
+    assetPath: "assets/pages/avancado/integracoes/geracao-de-relatorios-pdf.md",
+  ),
+  "avancado/integracoes/consumo-de-apis": Content(
+    title: "Consumo de APIs REST",
+    assetPath: "assets/pages/avancado/integracoes/consumo-de-apis.md",
+  ),
+  // Deploy
+  "avancado/deploy/gerar-executavel": Content(
+    title: "Gerar Executável (.exe)",
+    assetPath: "assets/pages/avancado/deploy/gerar-executavel.md",
+  ),
+  "avancado/boas-praticas": Content(
+    title: "Boas Práticas (Avançado)",
+    assetPath: "assets/pages/avancado/boas-praticas.md",
   ),
 };
 
@@ -136,7 +295,7 @@ Widget _construirLayoutDoApp(
 }
 
 final GoRouter router = GoRouter(
-  initialLocation: "/planos",
+  initialLocation: "/inicio",
   routes: [
     ShellRoute(
       builder: (context, state, child) {

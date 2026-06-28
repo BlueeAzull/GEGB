@@ -68,12 +68,48 @@ flutter:
 
   assets:
     - assets/sidebar_list.json
-    - assets/pages/markdowntest.md
-    - assets/pages/planos.md
+    - assets/pages/inicio.md
     - assets/pages/contato.md
-    - assets/pages/categoria1/teste1.md
-    - assets/pages/categoria2/subcategoria1/teste2.md
-    - assets/pages/categoria2/subcategoria2/teste3.md
+    - assets/pages/fundamentos/introducao/instalacao-visual-studio.md
+    - assets/pages/fundamentos/introducao/anatomia-do-projeto.md
+    - assets/pages/fundamentos/programacao/variaveis-e-tipos.md
+    - assets/pages/fundamentos/programacao/estruturas-de-controle.md
+    - assets/pages/fundamentos/programacao/metodos-e-funcoes.md
+    - assets/pages/fundamentos/poo/classes-e-objetos.md
+    - assets/pages/fundamentos/poo/heranca-e-polimorfismo.md
+    - assets/pages/fundamentos/boas-praticas.md
+    - assets/pages/controles/basicos/labels-e-buttons.md
+    - assets/pages/controles/basicos/seletores-e-opcoes.md
+    - assets/pages/controles/avancados/datagridview-essencial.md
+    - assets/pages/controles/avancados/listview-e-treeview.md
+    - assets/pages/controles/layout/panels-e-groups.md
+    - assets/pages/controles/layout/responsividade.md
+    - assets/pages/controles/dialogos/dialogos-padrao.md
+    - assets/pages/controles/dialogos/comunicacao-entre-forms.md
+    - assets/pages/controles/boas-praticas.md
+    - assets/pages/banco-de-dados/configuracao/instalacao-mysql.md
+    - assets/pages/banco-de-dados/conexao/classe-conexao.md
+    - assets/pages/banco-de-dados/operacoes/inserir-e-consultar.md
+    - assets/pages/banco-de-dados/operacoes/atualizar-e-excluir.md
+    - assets/pages/banco-de-dados/arquitetura/padrao-repository.md
+    - assets/pages/banco-de-dados/arquitetura/camada-de-servicos.md
+    - assets/pages/banco-de-dados/avancado/transacoes.md
+    - assets/pages/banco-de-dados/projeto-pratico.md
+    - assets/pages/banco-de-dados/boas-praticas.md
+    - assets/pages/dicas/separacao-de-responsabilidades.md
+    - assets/pages/dicas/codigo-confuso-vs-codigo-limpo.md
+    - assets/pages/dicas/clean-code/dry-e-yagni.md
+    - assets/pages/dicas/clean-code/retornos-precoces.md
+    - assets/pages/dicas/erros/try-catch-global.md
+    - assets/pages/dicas/produtividade/atalhos-do-visual-studio.md
+    - assets/pages/dicas/boas-praticas.md
+    - assets/pages/avancado/assincronismo/async-await.md
+    - assets/pages/avancado/assincronismo/background-worker-e-threads.md
+    - assets/pages/avancado/customizacao/desenho-customizado.md
+    - assets/pages/avancado/integracoes/geracao-de-relatorios-pdf.md
+    - assets/pages/avancado/integracoes/consumo-de-apis.md
+    - assets/pages/avancado/deploy/gerar-executavel.md
+    - assets/pages/avancado/boas-praticas.md
 
   # To add assets to your application, add an assets section, like this:
   # assets:

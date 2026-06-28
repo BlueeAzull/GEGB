@@ -19,12 +19,20 @@ class Topbar extends StatelessWidget implements PreferredSizeWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Text(
-              'GEGB',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 28.0,
-                fontFamily: 'Archivo Black',
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  context.go('/inicio');
+                },
+                child: const Text(
+                  'GEGB',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28.0,
+                    fontFamily: 'Archivo Black',
+                  ),
+                ),
               ),
             ),
 

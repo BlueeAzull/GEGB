@@ -180,6 +180,14 @@ class CodeBlockBuilder extends MarkdownElementBuilder {
   Widget? visitElementAfter(md.Element element, TextStyle? preferredStyle) {
     final String text = element.textContent;
 
+    // Se o elemento não contiver quebras de linha e não possuir classe de linguagem,
+    // tratamos como um snippet de código inline (ex: `var`).
+    // Retornamos null para que o flutter_markdown use o estilo padrão de texto embutido.
+    final bool isInline = !text.contains('\n') && element.attributes['class'] == null;
+    if (isInline) {
+      return null;
+    }
+
     String language = 'csharp';
     if (element.attributes['class'] != null) {
       language = element.attributes['class']!.replaceAll('language-', '');
@@ -193,8 +201,9 @@ class CodeBlockBuilder extends MarkdownElementBuilder {
         color: const Color(0xFF282C35), // Fundo do bloco de código
         borderRadius: BorderRadius.circular(8.0),
       ),
-      // SelectableText.rich garante a prioridade 2 (selecionar trechos específicos)
-      child: SelectableText.rich(
+      // Text.rich é utilizado pois o widget pai já possui o SelectionArea ativo.
+      // O uso de SelectableText dentro de SelectionArea causa conflito de registro de seleção e erros de asserção no Flutter.
+      child: Text.rich(
         TextSpan(
           children: _buildHighlightedSpans(text, language),
           style: const TextStyle(
