@@ -4,6 +4,7 @@ import 'widgets/topbar.dart';
 import 'widgets/pages.dart';
 import 'widgets/sidebar.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'yandex_metrika/yandex_metrika.dart';
 
 final ValueNotifier<bool> sidebarNotifier = ValueNotifier<bool>(false);
 final ValueNotifier<bool> isDarkThemeNotifier = ValueNotifier<bool>(true);
@@ -314,6 +315,28 @@ final GoRouter router = GoRouter(
 );
 
 class MyAppState extends State<MyApp> {
+  String? _lastRoute;
+
+  @override
+  void initState() {
+    super.initState();
+    router.routerDelegate.addListener(_onRouteChanged);
+  }
+
+  @override
+  void dispose() {
+    router.routerDelegate.removeListener(_onRouteChanged);
+    super.dispose();
+  }
+
+  void _onRouteChanged() {
+    final String currentRoute = router.routerDelegate.currentConfiguration.uri.toString();
+    if (_lastRoute != currentRoute) {
+      _lastRoute = currentRoute;
+      trackPage(currentRoute);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
