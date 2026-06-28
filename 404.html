@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Carregando...</title>
+  <script type="text/javascript">
+    var REPO_NAME = 'gegb'; 
+
+    var basePrefix = REPO_NAME ? '/' + REPO_NAME : '';
+    var pathname = window.location.pathname;
+    var route = pathname.replace(basePrefix, '');
+
+
+    window.location.replace(
+      window.location.protocol + '//' + window.location.host + basePrefix + '/?p=' + encodeURIComponent(route) + window.location.search + window.location.hash
+    );
+  </script>
+</head>
+<body>
+</body>
+</html>
