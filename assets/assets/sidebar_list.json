@@ -1,0 +1,283 @@
+[
+
+  {
+    "title": "Fundamentos",
+    "children": [
+      {
+        "title": "Introdução",
+        "children": [
+          {
+            "title": "Instalação do VS",
+            "pageKey": "fundamentos/introducao/instalacao-visual-studio"
+          },
+          {
+            "title": "Anatomia do Projeto",
+            "pageKey": "fundamentos/introducao/anatomia-do-projeto"
+          }
+        ]
+      },
+      {
+        "title": "Programação C#",
+        "children": [
+          {
+            "title": "Variáveis e Tipos",
+            "pageKey": "fundamentos/programacao/variaveis-e-tipos"
+          },
+          {
+            "title": "Controle de Fluxo",
+            "pageKey": "fundamentos/programacao/estruturas-de-controle"
+          },
+          {
+            "title": "Métodos e Funções",
+            "pageKey": "fundamentos/programacao/metodos-e-funcoes"
+          }
+        ]
+      },
+      {
+        "title": "Orientação a Objetos",
+        "children": [
+          {
+            "title": "Classes e Objetos",
+            "pageKey": "fundamentos/poo/classes-e-objetos"
+          },
+          {
+            "title": "Herança e Polimorfismo",
+            "pageKey": "fundamentos/poo/heranca-e-polimorfismo"
+          }
+        ]
+      },
+      {
+        "title": "Boas Práticas",
+        "pageKey": "fundamentos/boas-praticas"
+      }
+    ]
+  },
+  {
+    "title": "Controles WinForms",
+    "children": [
+      {
+        "title": "Controles Básicos",
+        "children": [
+          {
+            "title": "Labels e Buttons",
+            "pageKey": "controles/basicos/labels-e-buttons"
+          },
+          {
+            "title": "Seletores e Opções",
+            "pageKey": "controles/basicos/seletores-e-opcoes"
+          }
+        ]
+      },
+      {
+        "title": "Controles Avançados",
+        "children": [
+          {
+            "title": "DataGridView Essencial",
+            "pageKey": "controles/avancados/datagridview-essencial"
+          },
+          {
+            "title": "ListView e TreeView",
+            "pageKey": "controles/avancados/listview-e-treeview"
+          }
+        ]
+      },
+      {
+        "title": "Controles de Layout",
+        "children": [
+          {
+            "title": "Panels e Groups",
+            "pageKey": "controles/layout/panels-e-groups"
+          },
+          {
+            "title": "Responsividade",
+            "pageKey": "controles/layout/responsividade"
+          }
+        ]
+      },
+      {
+        "title": "Diálogos e Telas",
+        "children": [
+          {
+            "title": "Diálogos Padrão",
+            "pageKey": "controles/dialogos/dialogos-padrao"
+          },
+          {
+            "title": "Comunicação entre Forms",
+            "pageKey": "controles/dialogos/comunicacao-entre-forms"
+          }
+        ]
+      },
+      {
+        "title": "Boas Práticas",
+        "pageKey": "controles/boas-praticas"
+      }
+    ]
+  },
+  {
+    "title": "Banco de Dados & CRUD",
+    "children": [
+      {
+        "title": "Configuração & Conexão",
+        "children": [
+          {
+            "title": "Instalação do MySQL",
+            "pageKey": "banco-de-dados/configuracao/instalacao-mysql"
+          },
+          {
+            "title": "Classe de Conexão",
+            "pageKey": "banco-de-dados/conexao/classe-conexao"
+          }
+        ]
+      },
+      {
+        "title": "Operações SQL",
+        "children": [
+          {
+            "title": "Inserir e Consultar",
+            "pageKey": "banco-de-dados/operacoes/inserir-e-consultar"
+          },
+          {
+            "title": "Atualizar e Excluir",
+            "pageKey": "banco-de-dados/operacoes/atualizar-e-excluir"
+          }
+        ]
+      },
+      {
+        "title": "Arquitetura",
+        "children": [
+          {
+            "title": "Padrão Repository",
+            "pageKey": "banco-de-dados/arquitetura/padrao-repository"
+          },
+          {
+            "title": "Camada de Serviços",
+            "pageKey": "banco-de-dados/arquitetura/camada-de-servicos"
+          }
+        ]
+      },
+      {
+        "title": "Avançado",
+        "children": [
+          {
+            "title": "Transações SQL",
+            "pageKey": "banco-de-dados/avancado/transacoes"
+          }
+        ]
+      },
+      {
+        "title": "Projeto Prático (CRUD)",
+        "pageKey": "banco-de-dados/projeto-pratico"
+      },
+      {
+        "title": "Boas Práticas",
+        "pageKey": "banco-de-dados/boas-praticas"
+      }
+    ]
+  },
+  {
+    "title": "Dicas & Clean Code",
+    "children": [
+      {
+        "title": "Arquitetura",
+        "children": [
+          {
+            "title": "Separação de Responsabilidades",
+            "pageKey": "dicas/separacao-de-responsabilidades"
+          },
+          {
+            "title": "Código Confuso VS Limpo",
+            "pageKey": "dicas/codigo-confuso-vs-codigo-limpo"
+          }
+        ]
+      },
+      {
+        "title": "Clean Code",
+        "children": [
+          {
+            "title": "DRY e YAGNI",
+            "pageKey": "dicas/clean-code/dry-e-yagni"
+          },
+          {
+            "title": "Retornos Precoces",
+            "pageKey": "dicas/clean-code/retornos-precoces"
+          }
+        ]
+      },
+      {
+        "title": "Erros",
+        "children": [
+          {
+            "title": "Try-Catch Global",
+            "pageKey": "dicas/erros/try-catch-global"
+          }
+        ]
+      },
+      {
+        "title": "Produtividade",
+        "children": [
+          {
+            "title": "Atalhos do VS",
+            "pageKey": "dicas/produtividade/atalhos-do-visual-studio"
+          }
+        ]
+      },
+      {
+        "title": "Boas Práticas",
+        "pageKey": "dicas/boas-praticas"
+      }
+    ]
+  },
+  {
+    "title": "Programação Avançada",
+    "children": [
+      {
+        "title": "Assincronismo",
+        "children": [
+          {
+            "title": "Async e Await",
+            "pageKey": "avancado/assincronismo/async-await"
+          },
+          {
+            "title": "Threads e BackgroundWorker",
+            "pageKey": "avancado/assincronismo/background-worker-e-threads"
+          }
+        ]
+      },
+      {
+        "title": "Customização",
+        "children": [
+          {
+            "title": "Desenho Customizado (GDI+)",
+            "pageKey": "avancado/customizacao/desenho-customizado"
+          }
+        ]
+      },
+      {
+        "title": "Integrações",
+        "children": [
+          {
+            "title": "Geração de PDF",
+            "pageKey": "avancado/integracoes/geracao-de-relatorios-pdf"
+          },
+          {
+            "title": "Consumo de APIs REST",
+            "pageKey": "avancado/integracoes/consumo-de-apis"
+          }
+        ]
+      },
+      {
+        "title": "Deploy",
+        "children": [
+          {
+            "title": "Gerar Executável (.exe)",
+            "pageKey": "avancado/deploy/gerar-executavel"
+          }
+        ]
+      },
+      {
+        "title": "Boas Práticas",
+        "pageKey": "avancado/boas-praticas"
+      }
+    ]
+  }
+]
