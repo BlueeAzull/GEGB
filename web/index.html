@@ -1,6 +1,24 @@
 <!doctype html>
 <html>
   <head>
+    <!-- 404 fix 2: the electric boogaloo -->
+    <script type="text/javascript">
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var path = params.get('p');
+      if (path) {
+        
+        params.delete('p');
+        var search = params.toString();
+        
+        
+        var newUrl = window.location.pathname + (path.startsWith('/') ? path.slice(1) : path) + (search ? '?' + search : '') + window.location.hash;
+        
+        
+        window.history.replaceState(null, null, newUrl);
+      }
+    })();
+  </script>
     <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
